@@ -1,0 +1,76 @@
+{% extends 'authtest/base.html' %}
+
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block header %}
+    Авторизация
+{% endblock %}
+
+{% block form_legend %}
+    Форма авторизации
+{% endblock %}
+
+{% block enter_option %}
+    <a href="{% url 'register' %}">Нет аккаунта?</a>
+{% endblock %}
+
+{% block form_content_block %}
+
+    <div class="form_field">
+        <label for="{{ form.email.id_for_label }}">
+            {{ form.email.label }}
+        </label>
+        {{ form.email }}
+
+        <div class="errors_block">
+            {% for error in form.email.errors|slice:":1" %}
+                {% for text in error %}
+                    {{ text }}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form_field">
+        <label for="{{ form.username.id_for_label }}">
+            {{ form.username.label }}
+        </label>
+        {{ form.username }}
+
+        <div class="errors_block">
+            {% for error in form.username.errors|slice:":1" %}
+                {% for text in error %}
+                    {{ text }}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <br>
+
+    <div class="form_field">
+        <label for="{{ form.password.id_for_label }}">
+            {{ form.password.label }}
+        </label>
+        {{ form.password }}
+
+        <div class="errors_block">
+            {% for error in form.password.errors|slice:":1" %}
+                {% for text in error %}
+                    {{ text }}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <br>
+
+{% endblock form_content_block %}
+
+{% block button_submit %}
+    Авторизоваться
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/authtest/css/styles.css">
+</head>
+<body>
+    <center>
+        <h1>{% block header %}{% endblock %}</h1>
+
+        {% for m in messages %}
+            <p class="{{ m.tags }}"><u>{{ m }}</u></p>
+        {% endfor %}
+
+        <form action="" method="POST">
+            <fieldset>
+                <legend>{% block form_legend %}{% endblock %}</legend>
+                {% csrf_token %}
+
+                {% if standard_form %}
+                    {% for f in form %}
+                        <div class="form_field">
+                            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                            {{ f }}
+                        </div>
+                        {% if f.errors %}
+                            <div class="errors_block">
+                                {% for error in f.errors|slice:":1" %}
+                                    {% for text in error %}
+                                        {{ text }}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <br>
+
+                    {% endfor %}
+                {% else %}
+                    {% block form_content_block %}
+                    {% endblock %}
+                {% endif %}
+                
+                <div class="bottom_options">
+                    {% block enter_option %}{% endblock %}
+                    <button type="submit">{% block button_submit %}{% endblock %}</button>
+                </div>
+            </fieldset>
+        </form>
+    </center>
+</body>
+</html>

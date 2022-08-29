@@ -1,0 +1,25 @@
+form {
+    width: 50%;
+}
+
+form fieldset {
+    padding: 2rem;
+}
+
+form .form_field {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+form .form_field label {
+    text-align: start;
+}
+
+form .bottom_options {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+form .errors_block {
+    margin-top: 10px;
+}
